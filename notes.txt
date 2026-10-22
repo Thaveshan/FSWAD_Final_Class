@@ -1,0 +1,158 @@
+server.js
+   │
+   ├── Start Express
+   ├── Connect DB
+   ├── GET tickets
+   ├── POST tickets
+   ├── UPDATE tickets
+   ├── DELETE tickets
+   ├── Validation
+   ├── Error handling
+   └── ...
+
+   server.js
+   ↓
+starts application
+
+routes/
+   ↓
+decides which URL goes where
+
+controllers/
+   ↓
+contains API logic
+
+models/
+   ↓
+communicates with MongoDB
+
+config/
+   ↓
+application configuration
+
+
+Tickets page
+App.jsx
+   ↓
+tickets prop
+   ↓
+TicketsPage
+   ↓
+filter/map
+   ↓
+TicketCard
+
+
+Update flow
+TicketCard
+   ↓
+onToggleStatus(id)
+   ↓
+App.jsx
+   ↓
+toggleTicketStatus()
+   ↓
+setTickets()
+   ↓
+new shared state
+
+Details flow
+/tickets/2
+    ↓
+React Router
+    ↓
+TicketDetailsPage
+    ↓
+useParams()
+    ↓
+id = "2"
+    ↓
+Number(id)
+    ↓
+tickets.find()
+    ↓
+Ticket 2 displayed
+
+_____________________________________
+
+
+MongoDB
+   ↑
+Mongoose
+   ↑
+Express Controller
+   ↑
+GET /api/tickets
+   ↑
+fetch()
+   ↑
+ssr-demo.jsx
+   ↓
+ServerTicketSummary
+   ↓
+renderToString()
+   ↓
+HTML
+
+
+              MongoDB
+                 ↑
+              Express
+                 ↑
+          GET /api/tickets
+                 ↑
+          Server-side fetch
+                 ↑
+          React Component
+                 ↓
+          renderToString()
+                 ↓
+                HTML
+
+
+                ____________________________________________________
+
+Server
+  ↓
+HTML
+  ↓
+Browser displays page
+  ↓
+React JavaScript loads
+  ↓
+React connects to existing HTML
+  ↓
+Events become active
+
+
+_____________________________________
+
+                 USER
+                   ↓
+             /tickets
+                   ↓
+               SERVER
+                   ↓
+              ROUTING
+                   ↓
+          GET /api/tickets
+                   ↓
+              EXPRESS
+                   ↓
+              MONGODB
+                   ↓
+               DATA
+                   ↓
+          REACT SSR COMPONENT
+                   ↓
+          renderToString()
+                   ↓
+                HTML
+                   ↓
+               BROWSER
+                   ↓
+            CLIENT BUNDLE
+                   ↓
+              HYDRATION
+                   ↓
+        INTERACTIVE REACT APP
